@@ -3,6 +3,9 @@
 import { AnimatePresence, motion, useInView, Variants } from "framer-motion";
 import { useRef } from "react";
 
+// Define MarginType based on framer-motion's documentation
+type MarginType = string | number | { top?: number | string; right?: number | string; bottom?: number | string; left?: number | string };
+
 interface BlurFadeProps {
   children: React.ReactNode;
   className?: string;
@@ -14,9 +17,10 @@ interface BlurFadeProps {
   delay?: number;
   yOffset?: number;
   inView?: boolean;
-  inViewMargin?: string;
+  inViewMargin?: MarginType;
   blur?: string;
 }
+
 const BlurFade = ({
   children,
   className,
@@ -25,11 +29,15 @@ const BlurFade = ({
   delay = 0,
   yOffset = 6,
   inView = false,
-  inViewMargin = "-50px",
+  inViewMargin,
   blur = "6px",
 }: BlurFadeProps) => {
   const ref = useRef(null);
-  const inViewResult = useInView(ref, { once: true, margin: inViewMargin });
+  const inViewOptions = { once: true };
+  if (inViewMargin !== undefined) {
+    Object.assign(inViewOptions, { margin: inViewMargin });
+  }
+  const inViewResult = useInView(ref, inViewOptions);
   const isInView = !inView || inViewResult;
   const defaultVariants: Variants = {
     hidden: { y: yOffset, opacity: 0, filter: `blur(${blur})` },
