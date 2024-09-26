@@ -12,7 +12,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useEffect, useState } from "react";
-import { doc, onSnapshot, updateDoc, increment, serverTimestamp  } from "firebase/firestore";
+import { doc, onSnapshot, updateDoc, increment, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase";
 
 export default function Navbar() {
@@ -26,14 +26,21 @@ export default function Navbar() {
     const incrementViews = async () => {
       if (hasIncrementedView) return;
       
-      try {
-        await updateDoc(viewsRef, {
-          count: increment(1),
-          lastViewed: serverTimestamp()
-        });
-        hasIncrementedView = true;
-      } catch (error) {
-        console.error("Error incrementing view count:", error);
+      const lastVisit = localStorage.getItem('lastVisit');
+      const now = new Date().getTime();
+      
+      // If last visit was more than 1 hour ago or doesn't exist, increment the count
+      if (!lastVisit || (now - parseInt(lastVisit, 10)) > 60 * 60 * 1000) {
+        try {
+          await updateDoc(viewsRef, {
+            count: increment(1),
+            lastViewed: serverTimestamp()
+          });
+          localStorage.setItem('lastVisit', now.toString());
+          hasIncrementedView = true;
+        } catch (error) {
+          console.error("Error incrementing view count:", error);
+        }
       }
     };
 
@@ -94,7 +101,6 @@ export default function Navbar() {
             </DockIcon>
           ))}
         <Separator orientation="vertical" className="h-full py-2" />
-
         <DockIcon>
           <Tooltip>
             <TooltipTrigger asChild>
@@ -112,7 +118,6 @@ export default function Navbar() {
             </TooltipContent>
           </Tooltip>
         </DockIcon>
-
         <Separator orientation="vertical" className="h-full py-2" />
         <DockIcon>
           <ModeToggle />
