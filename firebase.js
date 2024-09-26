@@ -1,6 +1,6 @@
 // firebase.js
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, doc, onSnapshot, updateDoc, increment } from "firebase/firestore";
 
 // Your Firebase config object from the Firebase Console
 const firebaseConfig = {

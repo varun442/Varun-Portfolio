@@ -12,28 +12,53 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { useEffect, useState } from "react";
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, updateDoc, increment, serverTimestamp  } from "firebase/firestore";
 import { db } from "../../firebase";
-// Mock function to get profile views (replace with actual data fetching)
-const profileViews = 123; // Replace this with your actual logic for fetching the profile view count
 
 export default function Navbar() {
   const [profileViews, setProfileViews] = useState(0);
 
   useEffect(() => {
-    // Replace "views" with your actual Firestore document reference
     const viewsRef = doc(db, "profile", "views");
+    let timer;
+    let hasIncrementedView = false;
+
+    const incrementViews = async () => {
+      if (hasIncrementedView) return;
+      
+      try {
+        await updateDoc(viewsRef, {
+          count: increment(1),
+          lastViewed: serverTimestamp()
+        });
+        hasIncrementedView = true;
+      } catch (error) {
+        console.error("Error incrementing view count:", error);
+      }
+    };
+
+    // Set a timer to increment the view count after 5 seconds
+    timer = setTimeout(() => {
+      incrementViews();
+    }, 5000);
 
     // Real-time listener for views
     const unsubscribe = onSnapshot(viewsRef, (doc) => {
       if (doc.exists()) {
-        console.log("Current profile views count:", doc.data().count); // Log current count
-        setProfileViews(doc.data().count); // Assuming "count" field holds view count
+        setProfileViews(doc.data().count);
+      } else {
+        console.log("No such document!");
       }
+    }, (error) => {
+      console.error("Error fetching profile views:", error);
     });
-    return () => unsubscribe(); // Cleanup on unmount
+
+    // Cleanup function
+    return () => {
+      clearTimeout(timer);
+      unsubscribe();
+    };
   }, []);
-  
   
   return (
     <div className="pointer-events-none fixed inset-x-0 bottom-0 z-30 mx-auto mb-4 flex origin-bottom h-full max-h-14">
@@ -76,14 +101,14 @@ export default function Navbar() {
               <div
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "icon" }),
-                  "flex items-center space-x-2 py-2 px-3" // Adjusted padding and added vertical padding as well
+                  "flex items-center space-x-2 py-2 px-3"
                 )}
               >
                 <span className="text-sm font-medium">{profileViews}</span>
               </div>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Profile Views</p> {/* Tooltip content displayed on hover */}
+              <p>Profile Views</p>
             </TooltipContent>
           </Tooltip>
         </DockIcon>
