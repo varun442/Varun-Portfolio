@@ -19,7 +19,7 @@ interface ResumeCardProps {
   period: string;
   description?: string;
 }
-export const ResumeCard = ({
+export const  ResumeCard = ({
   logoUrl,
   altText,
   title,
