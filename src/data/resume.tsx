@@ -195,6 +195,38 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "Community Restoration (Hackathon)",
+      href: "https://github.com/varun442/CRP",
+      dates: "Sept 2024",
+      active: true,
+      description: "A MERN stack app for the Community Restoration Project, featuring event management, volunteer coordination, and a points system. Built with React.js, MongoDB, MaterialUI, ExpressJS, and JavaScript, it uses Gemini API and Generative AI for a chatbot integration.",
+
+      technologies: [
+        "React.js",
+        "MongoDB",
+        "MaterialUI",
+        "JavaScript",
+        "ExpressJS",
+        "Gemini API",
+        "Generative AI"
+      ],
+      links: [
+        
+        {
+          type: "Source - Frontend",
+          href: "https://github.com/varun442/CRP",
+          icon: <Icons.github className="size-3" />,
+        },
+        {
+          type: "Source - Backend",
+          href: "https://github.com/varun442/CRP-backend",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "/crp.jpg",
+      // video: "https://cdn.llm.report/openai-demo.mp4",
+    },
+    {
       title: "Crypto Hunter",
       href: "https://kriptoo.netlify.app/",
       dates: "Jan 2023 - Feb 2023",
