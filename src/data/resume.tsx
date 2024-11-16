@@ -15,17 +15,16 @@ export const DATA = {
   skills: [
     "React",
     "Next.js",
+    "Java",
     "Javascript",
     "Node.js",
     "MongoDB",
     "Python",
-    "Go",
     "PostgreSQL",
     "Redis",
     "MySQL",
     "Docker",
     "Kubernetes",
-    "Java",
     "C++",
     "HTML",
     "CSS",
@@ -87,16 +86,27 @@ export const DATA = {
 
   work: [
     {
+      company: "Georgia State University - Student Success Department",
+      href: "https://success.students.gsu.edu/",
+      badges: [],
+      location: "Remote",
+      title: "Software Engineer",
+      logoUrl: "/GSU.png",
+      start: "Aug 2024",
+      end: "present",
+      description:
+        "Built and deployed a comprehensive student management platform using React.js, Node.js, and AWS DynamoDB that streamlined attendance tracking and grade monitoring, leading to an 85% reduction in administrative workload and saving 20+ hours weekly for 300+ professors managing 10K+ students. Engineered a robust communication system utilizing SendGrid API with JWT authentication and Redis caching that achieved 98% email delivery rate, significantly improving student outreach efficiency. Implemented targeted intervention strategies for 100+ at-risk students, resulting in a 40% improvement in course completion rates through systematic academic and career mentorship. Leveraged full-stack expertise across HTML, CSS, React.js, JavaScript, Node.js, AWS DynamoDB, SendGrid API, JWT, and Redis to deliver a scalable and secure solution that transformed academic operations and student success tracking.",
+    },{
       company: "Alien Attorney/Orbex Labs",
       href: "https://www.alienattorney.com/",
       badges: [],
       location: "Remote",
       title: "Software Engineer Intern",
       logoUrl: "/alien.jpg",
-      start: "May 2023",
-      end: "Aug 2023",
+      start: "May 2024",
+      end: "Aug 2024",
       description:
-        "Developed and optimized web applications using React.js, Redux, and Django REST Framework. Created an interactive image annotation system with HTML Canvas and custom JavaScript. Improved backend performance using FastAPI and PostgreSQL. Tech stack: React.js, Redux, Django, JavaScript, HTML Canvas, FastAPI, PostgreSQL.",
+      "Developed a high-performance AI document classification system using ReactJS, JavaScript, and Redux, featuring responsive UI components that improved workflow efficiency by 60% and enhanced user experience. Engineered an automated HTML5-based document annotation system that eliminated manual processes, increasing processing speed by 80% through single-click functionality. Implemented PostgreSQL schema denormalization and Python Django Rest APIs to handle increased document processing load, achieving 70% faster query response times and scaling from 100K to 1M+ daily requests. Optimized deployment infrastructure using GitHub Actions, Docker containerization, and AWS, establishing robust CI/CD pipelines with automated testing and monitoring that maintained a 99% deployment success rate, leveraging a comprehensive tech stack including ReactJS, JavaScript, Redux, HTML5, PostgreSQL, Python Django, Docker, and AWS."
     },
     {
       company: "LTIMindTree",
@@ -107,8 +117,7 @@ export const DATA = {
       logoUrl: "/lti.jpg",
       start: "Oct 2020",
       end: "May 2022",
-      description:
-        "Led development of high-performance eCommerce application using JavaScript, React.js, and AWS CloudFront for frontend. Engineered efficient backend with Node.js, RESTful APIs, and GraphQL. Implemented Redis caching to improve response times. Enhanced software quality through automated testing with Jest and Cypress. Tech stack: JavaScript, React.js, AWS CloudFront, Node.js, GraphQL, Redis, Jest, Cypress.",
+      description: "Architected and transformed a monolithic credit decisioning system into a microservices architecture using Core Java, Spring Boot, and AWS Kubernetes, significantly improving credit decision time by 40% and enabling 4x more application processing through an optimized ReactJS frontend and Spring backend REST APIs. Engineered a robust data persistence layer with Spring Data JPA, Hibernate, Java 17, and MySQL/PostgreSQL that achieved 45% faster transaction processing, while implementing comprehensive testing frameworks using Cypress, Playwright, JUnit, and Cucumber that reduced scoring discrepancies by 40%. Developed a high-throughput Kafka-based credit monitoring system processing 10,000+ daily transactions that slashed fraud detection latency from 15 to 5 minutes, enabling real-time fraud alerts. Led end-to-end Agile SDLC processes while applying OOP principles and design patterns, utilizing a tech stack including Java, Spring Boot, React, Kafka, Kubernetes, AWS, MySQL/PostgreSQL, and modern testing frameworks to deliver a scalable, efficient credit processing platform."
     },
     // {
     //   company: "Nvidia",
